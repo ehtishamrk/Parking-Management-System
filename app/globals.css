@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #14181D;          /* near-black asphalt background */
+  --surface: #1E242B;      /* raised dark surface */
+  --surface-2: #262E37;
+  --chalk: #F6F4EF;        /* light background / cards on light pages */
+  --paper: #FFFFFF;
+  --amber: #F2A93B;        /* vest-amber, primary accent */
+  --amber-ink: #7A4E0C;
+  --signal-green: #3FA66B; /* paid / active */
+  --signal-red: #D8604E;   /* pending / alert */
+  --steel: #8A93A0;        /* muted text, hairlines */
+  --steel-line: #2E3742;
+
+  --font-display: 'Barlow Condensed', 'Noto Nastaliq Urdu', sans-serif;
+  --font-body: 'Inter', 'Noto Nastaliq Urdu', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-chalk: var(--chalk);
+  --color-paper: var(--paper);
+  --color-amber: var(--amber);
+  --color-amber-ink: var(--amber-ink);
+  --color-signal-green: var(--signal-green);
+  --color-signal-red: var(--signal-red);
+  --color-steel: var(--steel);
+  --color-steel-line: var(--steel-line);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html[dir="rtl"] body {
+  font-family: 'Noto Nastaliq Urdu', var(--font-body);
+}
+
+body {
+  background: var(--chalk);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+/* Signature element: hazard stripe bar, used sparingly as a section divider */
+.hazard-stripe {
+  height: 6px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--amber),
+    var(--amber) 10px,
+    var(--ink) 10px,
+    var(--ink) 20px
+  );
+}
+
+/* Ticket stub: perforated-edge printed-receipt look for on-screen ticket previews */
+.ticket-stub {
+  background: var(--paper);
+  border: 1px dashed var(--steel);
+  position: relative;
+}
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--chalk);
+  border-radius: 999px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ticket-stub::before { left: -9px; }
+.ticket-stub::after { right: -9px; }
+
+.mono-num {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+@media print {
+  @page { size: 80mm auto; margin: 0; }
+  body * { visibility: hidden; }
+  #print-area, #print-area * { visibility: visible; }
+  #print-area {
+    position: absolute; left: 0; top: 0; width: 80mm;
+    font-family: var(--font-mono);
+  }
+}
