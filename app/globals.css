@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  /* ParkIn palette — brand: #005060 / #00D8B0, app tones: F2F9F7 / 87ABB2 / DEE8ED / FBFAFF / F8FAFE / F8F7F3 */
+  --ink: #005060;          /* brand deep teal — dark sidebar / hero background */
+  --surface: #0D6C80;      /* raised panel within a dark (ink) context */
+  --surface-2: #16889E;    /* inputs / hover states within a dark (ink) context, also dark table headers */
+  --chalk: #F2F9F7;        /* light page background; also light text on dark ink */
+  --paper: #FBFAFF;        /* card surface on light pages */
+  --paper-warm: #F8F7F3;   /* printed-receipt / ID-card stock tone, distinct from screen UI */
+  --amber: #00D8B0;        /* brand accent — buttons, active nav, focus rings */
+  --amber-ink: #003A32;    /* text on top of the accent fill, if ever needed */
+  --signal-green: #00A884; /* paid / active status */
+  --signal-red: #C96A4B;   /* pending / alert status (kept — not in brand palette but needed for contrast with green) */
+  --steel: #5C7A82;        /* muted text (darkened from #87ABB2 for AA contrast on light bg) */
+  --steel-line: #DEE8ED;   /* hairlines / borders on light surfaces */
+
+  --font-display: 'Barlow Condensed', 'Noto Nastaliq Urdu', sans-serif;
+  --font-body: 'Inter', 'Noto Nastaliq Urdu', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-chalk: var(--chalk);
+  --color-paper: var(--paper);
+  --color-paper-warm: var(--paper-warm);
+  --color-amber: var(--amber);
+  --color-amber-ink: var(--amber-ink);
+  --color-signal-green: var(--signal-green);
+  --color-signal-red: var(--signal-red);
+  --color-steel: var(--steel);
+  --color-steel-line: var(--steel-line);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html[dir="rtl"] body {
+  font-family: 'Noto Nastaliq Urdu', var(--font-body);
+}
+
+body {
+  background: var(--chalk);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+/* Signature element: diagonal stripe bar, used sparingly as a section divider */
+.hazard-stripe {
+  height: 6px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--amber),
+    var(--amber) 10px,
+    var(--chalk) 10px,
+    var(--chalk) 20px
+  );
+}
+
+/* Ticket stub: perforated-edge printed-receipt look for on-screen ticket previews */
+.ticket-stub {
+  background: var(--paper-warm);
+  border: 1px dashed var(--steel);
+  position: relative;
+}
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--chalk);
+  border-radius: 999px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ticket-stub::before { left: -9px; }
+.ticket-stub::after { right: -9px; }
+
+.mono-num {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* ID-card (CR80, 85.6mm x 54mm) styling for printable digital passes */
+.id-card-face {
+  width: 340px;
+  height: 214px; /* 85.6:54 aspect ratio, scaled up for on-screen editing */
+  background: linear-gradient(135deg, var(--ink), var(--surface));
+  color: var(--chalk);
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+@media print {
+  .id-card-face {
+    width: 85.6mm;
+    height: 54mm;
+    border-radius: 3mm;
+    padding: 4mm;
+  }
+}
+
+@media print {
+  @page { size: 80mm auto; margin: 0; }
+  @page idcard { size: 85.6mm 54mm; margin: 0; }
+  body * { visibility: hidden; }
+  #print-area, #print-area * { visibility: visible; }
+  #print-area {
+    position: absolute; left: 0; top: 0; width: 80mm;
+    font-family: var(--font-mono);
+  }
+  #print-area.id-card {
+    width: 85.6mm;
+    height: 54mm;
+    page: idcard;
+  }
+}
