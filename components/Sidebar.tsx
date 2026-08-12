@@ -40,7 +40,7 @@ export default function Sidebar({ role, businessName }: { role: 'admin' | 'opera
         <div className="px-5 py-5 flex items-center justify-between md:block">
           <div>
             <p className="font-display text-2xl tracking-wide leading-none">{businessName}</p>
-            <p className="text-[11px] uppercase tracking-[0.2em] text-steel mt-1">ParkIn</p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-mist mt-1">ParkIn</p>
           </div>
         </div>
         <div className="hazard-stripe md:mx-5 md:rounded-full" />
@@ -52,7 +52,7 @@ export default function Sidebar({ role, businessName }: { role: 'admin' | 'opera
                 key={href}
                 href={href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm whitespace-nowrap transition-colors ${
-                  active ? 'bg-amber text-ink font-semibold' : 'text-steel hover:bg-surface hover:text-chalk'
+                  active ? 'bg-amber text-ink font-semibold' : 'text-mist hover:bg-surface hover:text-chalk'
                 }`}
               >
                 <Icon size={17} />
@@ -61,9 +61,9 @@ export default function Sidebar({ role, businessName }: { role: 'admin' | 'opera
             );
           })}
         </nav>
-        <div className="mt-auto px-5 py-4 flex items-center justify-between border-t border-steel-line">
+        <div className="mt-auto px-5 py-4 flex items-center justify-between border-t border-surface">
           <LanguageToggle />
-          <button onClick={handleLogout} className="flex items-center gap-1.5 text-steel hover:text-signal-red text-sm">
+          <button onClick={handleLogout} className="flex items-center gap-1.5 text-mist hover:text-signal-red text-sm">
             <LogOut size={15} />
             {t('logout')}
           </button>

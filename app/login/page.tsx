@@ -39,27 +39,27 @@ export default function LoginPage() {
       </div>
       <div className="hazard-stripe w-24 rounded-full mb-6" />
       <p className="font-display text-4xl text-chalk tracking-wide mb-1">{t('app_name')}</p>
-      <p className="text-steel text-sm mb-8">{t('tagline')}</p>
+      <p className="text-mist text-sm mb-8">{t('tagline')}</p>
 
-      <form onSubmit={handleSubmit} className="bg-surface w-full max-w-sm rounded-2xl p-6 space-y-4 border border-steel-line">
+      <form onSubmit={handleSubmit} className="bg-surface w-full max-w-sm rounded-2xl p-6 space-y-4 border border-surface-2">
         <div>
-          <label className="text-xs text-steel">{t('email')}</label>
+          <label className="text-xs text-mist">{t('email')}</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full mt-1 bg-surface-2 border border-steel-line rounded-lg px-3 py-2.5 text-chalk outline-none focus:border-amber"
+            className="w-full mt-1 bg-ink border border-surface-2 rounded-lg px-3 py-2.5 text-chalk outline-none focus:border-amber"
           />
         </div>
         <div>
-          <label className="text-xs text-steel">{t('password')}</label>
+          <label className="text-xs text-mist">{t('password')}</label>
           <input
             type="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full mt-1 bg-surface-2 border border-steel-line rounded-lg px-3 py-2.5 text-chalk outline-none focus:border-amber"
+            className="w-full mt-1 bg-ink border border-surface-2 rounded-lg px-3 py-2.5 text-chalk outline-none focus:border-amber"
           />
         </div>
         <button

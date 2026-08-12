@@ -94,7 +94,7 @@ export default function AuthGuard({
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-ink text-chalk px-6 text-center">
         <p className="font-display text-3xl mb-2">Access Suspended</p>
-        <p className="text-steel max-w-sm mb-6">
+        <p className="text-mist max-w-sm mb-6">
           This lot's account has an unpaid balance of Rs {billingDue.toLocaleString()} from last month.
           Access is paused until your admin clears it from the Billing section.
         </p>
@@ -104,7 +104,7 @@ export default function AuthGuard({
             await supabase.auth.signOut();
             router.replace('/login/');
           }}
-          className="text-sm text-steel underline"
+          className="text-sm text-mist underline"
         >
           Log Out
         </button>
